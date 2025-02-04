@@ -3,12 +3,7 @@ import numpy as np
 import psycopg2
 from datetime import datetime, timedelta
 import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from email.mime.base import MIMEBase
-from email import encoders
 import warnings
-from fpdf import FPDF
 from decimal import Decimal
 import matplotlib.pyplot as plt
 from scipy.stats import skew, kurtosis
