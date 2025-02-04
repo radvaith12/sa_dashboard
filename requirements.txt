@@ -4,5 +4,4 @@ numpy
 psycopg2-binary
 matplotlib
 scipy
-smtplib
-warnings
+fpdf
