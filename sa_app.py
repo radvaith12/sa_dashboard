@@ -137,15 +137,24 @@ import numpy as np
 from datetime import datetime, timedelta
 
 # 🎯 **Ask user for logtime1 and logtime2**
+# 🎯 **Ask user for logtime1 and logtime2**
 st.sidebar.header("📅 Select Date & Time Range")
 
-# Date Input
-start_date = st.sidebar.date_input("Start Date", datetime.today().date() - timedelta(days=1))
-end_date = st.sidebar.date_input("End Date", datetime.today().date())
+# Set Default Date (Yesterday to Today)
+default_start_date = datetime.today().date() - timedelta(days=7)  # Yesterday
+default_end_date = datetime.today().date()  # Today
 
-# Time Input
-start_time = st.sidebar.time_input("Start Time", datetime.strptime("00:00:00", "%H:%M:%S").time())
-end_time = st.sidebar.time_input("End Time", datetime.strptime("23:59:59", "%H:%M:%S").time())
+# Set Default Time (US Stock Market Hours)
+default_start_time = datetime.strptime("09:30:00", "%H:%M:%S").time()  # 9:30 AM
+default_end_time = datetime.strptime("16:00:00", "%H:%M:%S").time()  # 4:00 PM
+
+# Date Input (With Defaults)
+start_date = st.sidebar.date_input("Start Date", default_start_date)
+end_date = st.sidebar.date_input("End Date", default_end_date)
+
+# Time Input (With Defaults)
+start_time = st.sidebar.time_input("Start Time", default_start_time)
+end_time = st.sidebar.time_input("End Time", default_end_time)
 
 # Convert to correct format for SQL queries
 logtime1 = f"{start_date} {start_time}.000"
@@ -154,6 +163,7 @@ logtime2 = f"{end_date} {end_time}.000"
 st.sidebar.write(f"🔍 Selected Log Time Range:")
 st.sidebar.write(f"**Start:** {logtime1}")
 st.sidebar.write(f"**End:** {logtime2}")
+
 #today_date = datetime.today().date()
 #tomorrow_date = today_date + timedelta(days=1)
 #logtime1 = str(today_date) + ' 00:00:00.000'
